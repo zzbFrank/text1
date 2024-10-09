@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>矿山地质灾害智能巡检系统</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/new_index.css">
+    <link type="text/css" href="css/style.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/biankuang_map.css">
+    <!-- <link rel="stylesheet"
+          href="dist/bootstrap.min.css" /> -->
+    <link rel="stylesheet" href="assets/styles.css" />
+    <!-- <link rel="stylesheet" href="right_top/manual.css">
+    <link rel="stylesheet" href="right_top/reset.css"> -->
+    </head>
+    
+</head>
+<style>
+    /* ---public---- */
+    .centerBox {
+        width: 75%;
+        margin-right: 15px;
+        background: transparent;
+    }
+
+    .boxFont {
+        font-size: 1.2vw;
+    }
+
+    .centerMainBox1 {
+        width: 100%;
+        height: 60.5%;
+    }
+
+    .centerMainBox2 {
+        width: 100%;
+        height: 38%;
+        position: relative;
+        margin-top: 15px;
+    }
+    .centerMainBox21 {
+        width: 100%;
+        height: 38%;
+        position: relative;
+        margin-top: 15px;
+    }
+    .centerMainBox2 .bottom_left {
+        position: absolute;
+        bottom:0.2%;
+        left: 0.5%;
+        width: 30%;
+        height: 110%;
+    }
+    .centerMainBox2 .bottom_left_in {
+        position: absolute;
+        bottom:4.4%;
+        left: 3.3%;
+        width: 25%;
+        height: 90%;
+    }
+
+
+    .centerMainBox2 .first_border {
+        position: absolute;
+        right: 0.5%;
+        width: 68%;
+        height: 100%;
+    }
+    .boxTitle2_1 {
+        width: 100%;
+        height: 10%;
+        font-size: .6vw;
+        position: absolute;
+        bottom: 93%;
+        left:13.6%;
+        /* text-align: center; */
+        line-height: 10%;
+        margin-top: 1vw;
+        color: #0efcff;
+    }
+    .boxTitle2 {
+        width: 100%;
+        height: 10%;
+        font-size: .6vw;
+        text-align: center;
+        line-height: 10%;
+        margin-top: 1vw;
+        color: #0efcff;
+    }
+
+    .contList {
+        position: relative;
+        width: 70%;
+        height: 8vw;
+        margin: 1vw auto 0;
+
+    }
+
+    .content1 li {
+        display: none;
+    }
+
+    .baseBox {
+        width: 100%;
+        border: none;
+        background: none;
+    }
+
+    .boxTitle {
+        font-size: .8vw;
+        width: 38%;
+        margin-top: 1vw;
+        text-align: center;
+    }
+
+    .right {
+        float: right;
+    }
+
+    .baseBoxLeft {
+        width: 30%;
+        height: 95%;
+        position: relative;
+    }
+
+    .baseBoxRight {
+        width: 68%;
+        height: 100%;
+    }
+
+    .baseBoxLeft .first_border {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+
+    .baseBox1,
+    .baseBox2,
+    .baseBox3 {
+        position: relative;
+    }
+
+    .baseBox1 .hardware,
+    .baseBox2 img,
+    .baseBox3 img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .csbaseBox1 {
+        position: relative;
+        z-index: 999;
+    }
+
+    #canvas {
+        display: block;
+        margin: 0 auto;
+        width: 10vw;
+        height: 5vw;
+    }
+
+    .progress {
+        position: relative;
+    }
+
+    .progress img {
+        width: 12.5vw;
+        height: 2vw;
+        position: absolute;
+        top: .4vw;
+        right: -.2vw;
+    }
+
+    .progress .disease {
+        position: absolute;
+        top: .7vw;
+        left: .5vw;
+        color: #fff;
+        font-size: .8vw;
+    }
+
+    .progress .similar {
+        position: absolute;
+        top: .8vw;
+        left: 3vw;
+        color: #0efcff;
+        font-size: .5vw;
+    }
+
+    /* 返回图标 */
+    .navLeft{
+        position: absolute;
+        top:5%;
+        left:35%;
+        width: 3.5%;
+        height: 8%;
+        z-index: 999;
+    }
+    .navLeft>img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .map_left{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:47.8%;
+        left:64.5%;
+        z-index: 999;
+    }
+    .map_center {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+    }
+</style>
+
+<body>
+    <div class="main">
+        <div class="nav">矿山地质灾害智能巡检系统</div>
+        <!-- 上侧标签 -->
+        <div class="nav_btn">
+            <div class="btn_left">
+                <!-- < href="dataMonitor.html"> -->
+                    <div class="btn_list listActive">主页</div>
+                <!-- <style>
+                #clock{
+                    margin:0% auto;
+                    border: 5px double rgb(0, 119, 128);
+                    width: 400px;
+                    height: 50px;
+                    line-height: 50px;
+                    text-align: center;
+                    font: bold;
+                    color: rgb(0, 255, 179);
+                }
+                </style>
+                <script>
+                function showTime(clock){
+                    var now = new Date();
+                    var year = now.getFullYear();
+                    var month= now.getMonth();
+                    var day = now.getDate();
+                    var hour = now.getHours();
+                    var minu = now.getMinutes();
+                    var second = now.getSeconds();
+                    month = month+1;
+                    var arr_work = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");
+                    var week = arr_work[ now.getDay()];
+                    var time = year+"年"+month+"月"+day+"日 "+ week+" "+hour+":"+minu+":"+second;
+                    clock.innerHTML="当前时间: "+time;
+                }
+                window.onload = function(){
+                    var clock = document.getElementById("clock");
+                    window.setInterval("showTime(clock)",1000);
+                  
+                }
+                </script>
+                <body>
+                <div id ="clock"></div>
+                </body> -->
+                
+            </div>
+            <div class="btn_middle">
+                <body>
+                    <script src="js/vue.min.js"></script>
+
+                    <div id="clock">
+                        <p class="date">{{ date }}     {{ time }}</p>
+                        <!-- <p class="time">{{ time }}</p> -->
+                        <!-- <p class="text">数字时钟 Vue.js</p> -->
+                    </div>
+                    <script>
+                        var clock = new Vue({
+                            el: '#clock',
+                            data: {
+                                time: '',
+                                date: ''
+                            }
+                        });
+                
+                        var week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+                        var timerID = setInterval(updateTime, 1000);
+                        updateTime();
+                        function updateTime() {
+                            var cd = new Date();
+                            clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+                            clock.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth() + 1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
+                        };
+                
+                        function zeroPadding(num, digit) {
+                            var zero = '';
+                            for (var i = 0; i < digit; i++) {
+                                zero += '0';
+                            }
+                            return (zero + num).slice(-digit);
+                        }
+                    </script>
+                    
+                </body>
+            </div>
+            <div class="btn_right">
+                <a href="production.html">
+                    <div class="btn_list">硬件管理</div>
+                </a>
+                <a href="warehousing_management.html">
+                    <div class="btn_list">矿场管理</div>
+                </a>
+                <a href="circulationSales.html">
+                    <div class="btn_list">巡检查询</div>
+                </a>
+                <a href="index.html">
+                    <div class="btn_list">数据中心</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 主要内容 -->
+        <div class="content">
+
+            <div class="centerBox">
+                <div class="baseBox centerMainBox1" style="height:70%">
+                    <!-- 70%不能改，控制的是整个中右两个框的大小 -->
+                    <div class="baseBoxLeft left">
+                        <div class="boxTitle">预警信息</div>
+                        <img src="./img/left.png" class="first_border" alt="">
+                        <div class="firstBox">
+                            <div class="pic">
+
+                                <div>
+                                    <video class="first_top1" src="img/HnVideoEditor_2024_10_03_164856126.mp4" controls="controls" autoplay="autoplay" loop="loop" ></video>
+                                </div>
+                                
+                                <!-- <img src="img/left1.gif" class="first_top1" alt=""> -->
+                                <div>
+                                    <video class="first_top2" src="img/HnVideoEditor_2024_10_03_105402385.mp4" controls="controls" autoplay="autoplay" loop="loop" ></video>
+                                </div>
+                            </div>
+                            <div class="picText">
+                                <span>捕捉影像1</span>
+                                <span class="text_second">捕捉影像2</span>
+                            </div>
+
+                            <!-- 声波 -->
+                            <!-- <div class="voice_animation">
+                                <canvas id="canvas">Your browser can not support canvas</canvas>
+                            </div> -->
+                            <div class="progress">
+                                <span class="disease">滑坡</span>
+                                <!-- <i class="counter-value">85</i>% -->
+                                <span class="similar">发生率:75%</span>
+                                <img src="./img/progress.gif" alt="">
+                            </div>
+
+                             <!-- <div id="wrapper"> -->
+                                <!-- <div class="content-area"> -->
+                                    <!-- <div class="container-fluid"> -->
+                                        <!-- <div class="main"> -->
+                                            <!-- <div class="row mt-4">
+                                                <div class="col-md-7">
+                                                    <div class="box  mt-4">
+                                                        <div id="linechart"></div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <div class="row">
+                                                <!-- <div class="col-md-5">
+                                                    <div class="box radialbox mt-4">
+                                                        <div id="circlechart"></div>
+                                                    </div>
+                                                </div> -->
+                                                <div class="col-md-7">
+                                                    <div class="box mt-4">
+                                                        <div class="mt-4">
+                                                            <div id="progress1"></div>
+                                                        </div>
+                                                        <div class="mt-4">
+                                                            <div id="progress2"></div>
+                                                        </div>
+                                                        <div class="mt-4">
+                                                            <div id="progress3"></div>
+                                                        </div>
+                                                        <!-- <div class="mt-4">
+                                                            <div id="progress3"></div>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <!-- </div> -->
+                                    <!-- </div> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+                            <!-- <script src="dist/jquery.slim.min.js"></script> -->
+                            <!-- <script src="dist/moment.min.js"></script> -->
+                            <script src="dist/apexcharts.js"></script>
+                            <script src="assets/scripts.js"></script>
+                        
+
+                            <div class="about_illness">
+                                <div class="symptom">
+                                    <div class="symptom_title">先兆特征</div>
+                                    <div class="symptom_content">
+                                        <p>1.发现东北方向032号坡存在大面积土石掉落</p>
+                                        <p>2.发现东北方向032号坡存在大面积尘土飞扬</p>
+                                    </div>
+                                </div>
+                                <div class="prevent">
+                                    <div class="prevent_title">应对措施</div>
+                                    <div class="prevent_content">
+                                        <p>1.请及时联系疏散东北方向032号坡人员</p>
+                                        <p>2.请指派无人机靠近观察，确认险情紧急情况</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="baseBoxRight right">
+                        <!-- 地图 -->
+                        <!-- <div class="map_left">
+                            <img class="land_level" src="img/landLevel.jpg" alt="">
+                            <img class="wifi_gif" src="img/wifi.gif"></img>
+                            <img class="sun_pic" src="img/sun.png" alt="">
+                            <img class="sun_pic_1_biaoji" src="img/maptop2.png" alt="">
+                            <img class="wrj_pic" src="img/wrj.png" alt="">
+                            <img class="wind_gif" src="img/wind_shape.gif" alt="">
+                            <img class="plant_pic display_box" src="img/plant.png" alt="">
+                        </div> -->
+
+                        <div class="maps">
+                            <div class="map_center">
+                                
+                                <video class="land_level_video" src="img\HnVideoEditor_2024_10_03_101548259.mp4" controls="controls" autoplay="autoplay" loop="loop"></video>
+
+                                <!-- <img class="land_level_1" src="img/HnVideoEditor_2024_10_01_190506874.gif" alt=""> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 左侧下部 -->
+                <!-- <div class="baseBox centerMainBox21" style="height:31%;">
+                    <img src="./img/right3.png" class="bottom_left" alt="">
+                </div> -->
+                <div class="baseBox centerMainBox2" style="height:31%;">
+                    <img src="./img/right3.png" class="bottom_left" alt="">
+                    <div class="video_data"> 
+                        <div class="boxTitle2_1">实时综况</div>
+                        <body>
+                            <div class="conic"></div>
+                        </body>
+                        <img src="./img/landLevel.png" class="bottom_left_in" alt="">
+                        
+                    </div>
+
+                    <img src="./img/chooseKuang.png" class="first_border" alt="">
+                    <div class="boxTitle2" style="width:95%;">统计数据</div> 
+                    <!-- <div class="boxTitle2" style="width:26%;margin-left:22vw;margin-top: -1.4vw;">生长数据</div> -->
+                    <div class="boxTitle2" style="width:16%;margin-left:53vw;margin-top: -1.4vw;">气象数据</div>
+                    <div class="bottom_box">
+                        <div class="grow_data">
+                            <body>
+                                <style>
+                                    body {
+                                        background: #000524;
+                                    }
+                            
+                                    #wrapper {
+                                        padding-top: 20px;
+                                        background: #000524;
+                                        border: 1px solid #000;
+                                        box-shadow: 0 22px 35px -16px rgba(0, 0, 0, 0.71);
+                                        max-width: 6800px;
+                                        margin: 1px auto;
+                                    }
+                            
+                                    #chart-bar {
+                                        position: relative;
+                                        margin-top: -30px;
+                                        
+                                    }
+                                </style>
+                            
+                                <script src="js/apexcharts.js"></script>
+                            
+                                <div id="wrapper">
+                                    <div id="chart-area">
+                            
+                                    </div>
+                                    <div id="chart-bar">
+                            
+                                    </div>
+                                </div>
+                            
+                                <script>
+                                    var data = generateDayWiseTimeSeries(new Date("22 Apr 2017").getTime(), 115, {
+                                        min: 30,
+                                        max: 90
+                                    });
+                                    var options1 = {
+                                        chart: {
+                                            id: "chart2",
+                                            type: "area",
+                                            height: 250,
+                                            foreColor: "#ccc",
+                                            toolbar: {
+                                                autoSelected: "pan",
+                                                show: false
+                                            }
+                                        },
+                                        // 折现宽度
+                                        colors: ["#00BAEC"],
+                                        stroke: {
+                                            width: 3
+                                        },
+                                        grid: {
+                                            borderColor: "#555",
+                                            yaxis: {
+                                                lines: {
+                                                    show: false
+                                                }
+                                            }
+                                        },
+                                        dataLabels: {
+                                            enabled: false
+                                        },
+                                        // 折线阴影厚度
+                                        fill: {
+                                            gradient: {
+                                                enabled: true,
+                                                opacityFrom: 0.55,
+                                                opacityTo: 0
+                                            }
+                                        },
+                                        // 点大小
+                                        markers: {
+                                            size: 5,
+                                            colors: ["#000524"],
+                                            strokeColor: "#00BAEC",
+                                            strokeWidth: 3
+                                        },
+                                        series: [
+                                          {
+                                              data: data
+                                          }
+                                        ],
+                                        tooltip: {
+                                            theme: "dark"
+                                        },
+                                        xaxis: {
+                                            type: "datetime"
+                                        },
+                                        // 纵坐标数字个数
+                                        yaxis: {
+                                            min: 0,
+                                            tickAmount: 4
+                                        }
+                                    };
+                            
+                                    var chart1 = new ApexCharts(document.querySelector("#chart-area"), options1);
+                            
+                                    chart1.render();
+                            
+                                    var options2 = {
+                                        chart: {
+                                            id: "chart1",
+                                            height: 150,
+                                            type: "bar",
+                                            foreColor: "#ccc",
+                                            brush: {
+                                                target: "chart2",
+                                                enabled: true
+                                            },
+                                            selection: {
+                                                fill: {
+                                                    color: "#fff",
+                                                    opacity: 0.4
+                                                },
+                                                xaxis: {
+                                                    min: new Date("27 Jul 2017 10:00:00").getTime(),
+                                                    max: new Date("14 Aug 2017 10:00:00").getTime()
+                                                }
+                                            }
+                                        },
+                                        colors: ["#FF0080"],
+                                        series: [
+                                          {
+                                              data: data
+                                          }
+                                        ],
+                                        stroke: {
+                                            width: 2
+                                        },
+                                        grid: {
+                                            borderColor: "#444"
+                                        },
+                                        markers: {
+                                            size: 0
+                                        },
+                                        xaxis: {
+                                            type: "datetime",
+                                            tooltip: {
+                                                enabled: false
+                                            }
+                                        },
+                                        yaxis: {
+                                            tickAmount: 2
+                                        }
+                                    };
+                            
+                                    var chart2 = new ApexCharts(document.querySelector("#chart-bar"), options2);
+                            
+                                    chart2.render();
+                            
+                                    function generateDayWiseTimeSeries(baseval, count, yrange) {
+                                        var i = 0;
+                                        var series = [];
+                                        while (i < count) {
+                                            var x = baseval;
+                                            var y =
+                                              Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+                            
+                                            series.push([x, y]);
+                                            baseval += 86400000;
+                                            i++;
+                                        }
+                                        return series;
+                                    }
+                                </script>
+                            
+                            </body>
+                        </div>
+                        <div class="weather_data">
+                            <div class="weather_text text_one">
+                                <span>温度：19℃</span>
+                                <span>湿度：52%</span>
+                                <span>风向：东南风</span>
+                                <span>风速：2m/s</span>
+                            </div>
+                            <div class="weather_text text_two">
+                                <span>降雨量：0mm</span>
+                                <span>蒸发量：0.326mm/h</span>
+                                <span>气压：0.326MPa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- 右侧三个 -->
+            <div class="leftBox right" style="width:24%">
+                <!-- 右1 -->
+                <div class="baseBox baseBox1" style="margin-bottom:15px;height:38.1%">
+                    <img src="./img/right.png" class="hardware" alt="">
+                    <div class="csbaseBox1">
+                        <div class="boxTitle">硬件设备</div>
+                        <ul class="boxLis">
+                            <li class="left active">六旋翼无人机</li>
+                            <li class="left">自主充电系统</li>
+                            <li class="left">图像识别系统</li>
+                        </ul>
+                        <!-- 右上框 -->
+                        <div class="content1">
+                            <ul>
+                                <li style="display: block;" class="contList">
+                                    <!-- 四个角描边 stat -->
+                                    <div class="leftTopLine1"></div>
+                                    <div class="leftTopLine2"></div>
+                                    <div class="rightTopLine1"></div>
+                                    <div class="rightTopLine2"></div>
+                                    <div class="leftBottomLine1"></div>
+                                    <div class="leftBottomLine2"></div>
+                                    <div class="rightBottomLine1"></div>
+                                    <div class="rightBottomLine2"></div>
+
+                                    <div class="equipment_pic">
+                                        <img class="first" src="img/six_video.gif" alt="">
+                                        <img class="second" src="img/control.png" alt="">
+                                        <img class="third" src="img/camera.png" alt="">
+                                        <img class="fourth" src="img/detector.png" alt="">
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                        <div class="liSpan">介绍</div>
+                        <p class="liP">
+                            无人机介绍</p>
+                    </div>
+                </div>
+                <!-- 右2 -->
+                <div class="baseBox baseBox2" style="margin-bottom:15px;height:29.5%">
+                    <img src="./img/right2.png" alt="">
+                    <!-- 四个角描边 end -->
+                    <div class="boxTitle2">巡航状况</div>
+                    <div class="irrigate_data">
+                        <div class="irrigate_top">
+                            <div class="centerList">
+                                <div class="centerListFont">累计巡航里程（km）</div>
+                                <div class="centerListNum">
+                                    <span class="">278</span>
+                                </div>
+                            </div>
+                            <div class="centerList">
+                                <div class="centerListFont">今日巡航里程（km）</div>
+                                <div class="centerListNum">
+                                    <span class="">18</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="irrigate_bottom">
+                            <div class="every_line">
+                                <span>当前剩余电量</span>
+                                <i class="">72%</i>
+                            </div>
+                            <div class="every_line">
+                                <span>当前飞行速度(km/h)</span>
+                                
+                                <i class="counter-value">39</i>
+                                <!-- <i class="counter-value">5</i> -->
+                            </div>
+                            <div class="every_line">
+                                <span>剩余连续飞行时间</span>
+                                <i>2.3h</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右3 -->
+                <div class="baseBox baseBox3" style="height:32.65%">
+                    <img src="./img/right3.png" alt="">
+                    <!-- 四个角描边 end -->
+                    <div class="boxTitle2">数据日志</div>
+                    <!-- <div class="data_day" id="demo" > -->
+                    <div class="data_day" id="demo" style="width:100%;overflow:hidden;height: 90%;">
+                        <table style="text-align: left;margin-left:10%;height:85%;">
+                            <tbody id="demo1">
+                                <!-- <tr class="head">
+                                    <td>编号</td>
+                                    <td>数据类型</td>
+                                    <td>数据值</td>
+                                    <td>时间</td>
+                                </tr> -->
+                                <tr>
+                                    <td>u78</td>
+                                    <td>传感器数据</td>
+                                    <td>163.28</td>
+                                    <td>2024年10月1日</td>
+                                </tr>
+
+                                <tr>
+                                    <td>006</td>
+                                    <td>无人机数据</td>
+                                    <td>130.67</td>
+                                    <td>2024年10月1日</td>
+                                </tr>
+
+                                <tr>
+                                    <td>s07</td>
+                                    <td>控制器数据</td>
+                                    <td>163.28</td>
+                                    <td>2024年10月1日</td>
+                                </tr>
+                                <tr>
+                                    <td>872</td>
+                                    <td>监视器数据</td>
+                                    <td>130.67</td>
+                                    <td>2024年10月2日</td>
+                                </tr>
+                                <tr>
+                                    <td>d59</td>
+                                    <td>监视器数据</td>
+                                    <td>163.28</td>
+                                    <td>2024年10月2日</td>
+                                </tr>
+
+                                <tr>
+                                    <td>299</td>
+                                    <td>监视器数据</td>
+                                    <td>130.67</td>
+                                    <td>2024年10月2日</td>
+                                </tr>
+                                <tr>
+                                    <td>256</td>
+                                    <td>传感器数据</td>
+                                    <td>163.28</td>
+                                    <td>2024年10月3日</td>
+                                </tr>
+                                <tr>
+                                    <td>026</td>
+                                    <td>无人机数据</td>
+                                    <td>130.67</td>
+                                    <td>2024年10月3日</td>
+                                </tr>
+                                <tr>
+                                    <td>037</td>
+                                    <td>传感器数据</td>
+                                    <td>163.28</td>
+                                    <td>2024年10月3日</td>
+                                </tr>
+                            </tbody>
+                            <tbody id="demo2" style="text-align: left;margin-left:10%"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/dataScoll.js"></script>
+<!-- 文字滚动 -->
+<script language="javascript" type="text/javascript">
+
+    var demo = document.getElementById("demo");
+    var demo1 = document.getElementById("demo1");
+    var demo2 = document.getElementById("demo2");
+    var speed = 15;    //滚动速度值，值越大速度越慢
+    demo2.innerHTML = demo1.innerHTML    //克隆demo2为demo1
+    function Marquee() {
+        if (demo2.offsetTop - demo.scrollTop <= 45) {
+            console.log('77777')  //当滚动至demo1与demo2交界时
+            demo.scrollTop -= demo1.offsetHeight    //demo跳到最顶端
+        } else {
+            console.log('88888')
+            demo.scrollTop++
+        }
+    }
+    var MyMar = setInterval(Marquee, speed);        //设置定时器
+    demo.onmouseover = function () { clearInterval(MyMar) }    //鼠标经过时清除定时器达到滚动停止的目的
+    demo.onmouseout = function () { MyMar = setInterval(Marquee, speed) }    //鼠标移开时重设定时器
+
+</script>
+<script type="text/javascript" src="js/digitalScroll.js"></script>
+<script>
+
+    var doublePI = Math.PI * 2;
+    var canvas;
+    var ctx;
+
+    //画布的高度的一半
+    var halfCanvasHeight = 100;
+    //水平边距
+    var horizontalMargin = 150;
+
+    //衰减系数(越大, 边缘衰减的就越多, 震动宽度相应也越窄)
+    var attenuationCoefficient = 2;
+    //半波长个数-1
+    var halfWaveCount = 20;
+    //振幅是画布高度的一般的百分比[0,1]
+    var amplitudePercentage = 0.3;
+    //每帧增加的弧度[0,2PI](作用于sin曲线, 正值相当于原点右移, 曲线左移)
+    var radianStep = 0.4;
+
+    //当前弧度的偏移
+    var radianOffset = 0;
+    //画布宽度
+    var canvasWidth;
+
+    function init() {
+        canvas = document.getElementById("canvas");
+        ctx = canvas.getContext("2d");
+        window.addEventListener("resize", onResize);
+
+        canvas.height = halfCanvasHeight * 2;
+        onResize();
+        loop();
+    }
+
+    function onResize() {
+        //元素的大小不能加单位, 单位默认就是像素, 而style中的长度要加单位
+        canvasWidth = canvas.width = window.innerWidth - horizontalMargin;
+    }
+
+    //设K=attenuationCoefficient, 计算信号衰减 (4K/(4K+x^4))^2K<=1 (x belong [-K,K])
+    function calcAttenuation(x) {
+        return Math.pow(4 * attenuationCoefficient / (4 * attenuationCoefficient + Math.pow(x, 4)), 2 * attenuationCoefficient);
+    }
+
+    //heightPercentage为振幅的显示比例
+    function drawAcousticWave(heightPercentage, alpha, lineWidth) {
+        ctx.strokeStyle = "white";
+        ctx.globalAlpha = alpha;
+        ctx.lineWidth = lineWidth || 1;
+        ctx.beginPath();
+        ctx.moveTo(0, halfCanvasHeight);
+        var x, y;
+        for (var i = -attenuationCoefficient; i <= attenuationCoefficient; i += 0.01) {
+            //i是当前位置相对于整个长度的比率( x=width*(i+K)/(2*K))
+            x = canvasWidth * (i + attenuationCoefficient) / (2 * attenuationCoefficient);
+            //加offset相当于把sin曲线向右平移
+            y = halfCanvasHeight + halfCanvasHeight * amplitudePercentage * calcAttenuation(i) * heightPercentage * Math.sin(halfWaveCount * i + radianOffset);
+            ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+    }
+
+    function loop() {
+        radianOffset = (radianOffset + radianStep) % doublePI;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawAcousticWave(1, 1, 2);
+        for (var i = 2; i < 4; i++) {
+            var reciprocal = 1 / i;
+            drawAcousticWave(reciprocal, reciprocal / 4);
+            drawAcousticWave(-reciprocal, reciprocal / 4);
+        }
+        requestAnimationFrame(loop);
+    }
+
+    init();
+    setInterval(function () {
+        numInit();
+    }, 6500)
+
+    // mark center display
+    $('.peasant').mouseenter(function () {
+        console.log(111)
+        console.log($('.window_two'))
+        $('.window_two').removeClass('display_box')
+    })
+    $('.peasant').mouseout(function () {
+        $('.window_two').addClass('display_box')
+    })
+
+
+
+    $('.land_box1').mouseenter(function () {
+        console.log(15556)
+        $('.windows').removeClass('display_box')
+    })
+    $('.land_box2').mouseenter(function () {
+        console.log(15556)
+        $('.windows').removeClass('display_box')
+    })
+    $('.land_box3').mouseenter(function () {
+        console.log(15556)
+        $('.windows').removeClass('display_box')
+    })
+    $('.land_box4').mouseenter(function () {
+        console.log(15556)
+        $('.windows').removeClass('display_box')
+    })
+
+    $('.land_box1').mouseout(function () {
+        $('.windows').addClass('display_box')
+    })
+    $('.land_box2').mouseout(function () {
+        $('.windows').addClass('display_box')
+    })
+    $('.land_box3').mouseout(function () {
+        $('.windows').addClass('display_box')
+    })
+    $('.land_box4').mouseout(function () {
+        $('.windows').addClass('display_box')
+    })
+
+
+    $('.plant').mouseenter(function () {
+        $('.plant_pic').removeClass('display_box')
+        $('.window_five').removeClass('display_box')
+    })
+    $('.plant').mouseout(function () {
+        $('.plant_pic').addClass('display_box')
+        $('.window_five').addClass('display_box')
+    })
+
+    $('.soil_data').mouseenter(function () {
+        $('.window_three').removeClass('display_box')
+    })
+    $('.soil_data').mouseout(function () {
+        $('.window_three').addClass('display_box')
+    })
+
+    $('.weather_info').mouseenter(function () {
+        $('.window_four').removeClass('display_box')
+    })
+    $('.weather_info').mouseout(function () {
+        $('.window_four').addClass('display_box')
+    })
+
+    $('.wrj_pic').mouseenter(function () {
+        $('.window_six').removeClass('display_box')
+    })
+    $('.wrj_pic').mouseout(function () {
+        $('.window_six').addClass('display_box')
+    })
+
+
+
+    $('.boxLis').on('mouseenter', 'li', function () {
+
+        var that = $(this);
+
+        that.addClass('active').siblings().removeClass('active');
+
+        $('.equipment_pic img').hide();
+
+        $('.equipment_pic img').eq(that.index()).show()
+
+
+    })
+
+    setInterval(function () {
+        numInit();
+        numInit1();
+        numInit2();
+    }, 6000)
+</script>
+
+<!DOCTYPE html>
+
+
+</body>
+</html>
+</html>
